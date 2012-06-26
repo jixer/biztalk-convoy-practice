@@ -137,7 +137,10 @@
                 <om:Property Name="ReportToAnalyst" Value="True" />
                 <om:Property Name="Name" Value="ConvoyLoadingDock" />
                 <om:Property Name="Signal" Value="True" />
-                <om:Element Type="LogicalBindingAttribute" OID="34baf588-8a60-44b8-ad60-25db7fee616d" ParentLink="PortDeclaration_CLRAttribute" LowerBound="18.1" HigherBound="19.1">
+                <om:Element Type="DirectBindingAttribute" OID="dfa0c0a4-4a0c-46ca-ada0-d4fa125183ed" ParentLink="PortDeclaration_CLRAttribute" LowerBound="18.1" HigherBound="19.1">
+                    <om:Property Name="PartnerPort" Value="ConvoyLoadingDock" />
+                    <om:Property Name="PartnerService" Value="ConvoyApplication.Convoy" />
+                    <om:Property Name="DirectBindingType" Value="PartnerPort" />
                     <om:Property Name="Signal" Value="False" />
                 </om:Element>
             </om:Element>
@@ -178,7 +181,7 @@ module ConvoyApplication
     [Microsoft.XLANGs.BaseTypes.BPELExportable(false)]
     internal service Convoy
     {
-        [Microsoft.XLANGs.BaseTypes.LogicalBinding()]
+        [Microsoft.XLANGs.BaseTypes.DirectBinding(typeof(ConvoyApplication.Convoy), "ConvoyLoadingDock")]
         port implements ConvoyMessagePort ConvoyLoadingDock;
         [Microsoft.XLANGs.BaseTypes.LogicalBinding()]
         port uses ConvoyMessagePort ConvoyDestination;

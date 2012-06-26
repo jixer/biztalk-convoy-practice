@@ -89,6 +89,12 @@
   <ItemGroup>
     <None Include="key.snk" />
   </ItemGroup>
+  <ItemGroup>
+    <XLang Include="Dispatcher.odx">
+      <TypeName>Dispatcher</TypeName>
+      <Namespace>Chris.Blog.BiztalkConvoy</Namespace>
+    </XLang>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\BizTalk\BizTalkC.targets" />
 </Project>

@@ -1,0 +1,136 @@
+﻿#if __DESIGNER_DATA
+#error Do not define __DESIGNER_DATA.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<om:MetaModel MajorVersion="1" MinorVersion="3" Core="2b131234-7959-458d-834f-2dc0769ce683" ScheduleModel="66366196-361d-448d-976f-cab5e87496d2" xmlns:om="http://schemas.microsoft.com/BizTalk/2003/DesignerData">
+    <om:Element Type="Module" OID="f9b40ba5-7066-4bd8-9ae6-559f1c696e49" LowerBound="1.1" HigherBound="30.1">
+        <om:Property Name="ReportToAnalyst" Value="True" />
+        <om:Property Name="Name" Value="Chris.Blog.BiztalkConvoy" />
+        <om:Property Name="Signal" Value="False" />
+        <om:Element Type="ServiceDeclaration" OID="5d0ba3cc-d7f3-4fc4-8ad8-1bba64a0122a" ParentLink="Module_ServiceDeclaration" LowerBound="4.1" HigherBound="29.1">
+            <om:Property Name="InitializedTransactionType" Value="False" />
+            <om:Property Name="IsInvokable" Value="False" />
+            <om:Property Name="TypeModifier" Value="Internal" />
+            <om:Property Name="ReportToAnalyst" Value="True" />
+            <om:Property Name="Name" Value="Dispatcher" />
+            <om:Property Name="Signal" Value="False" />
+            <om:Element Type="MessageDeclaration" OID="2d17af56-c30e-4f75-bbde-e185acf1db29" ParentLink="ServiceDeclaration_MessageDeclaration" LowerBound="11.1" HigherBound="12.1">
+                <om:Property Name="Type" Value="ConvoyApplication.ConvoyMessage" />
+                <om:Property Name="ParamDirection" Value="In" />
+                <om:Property Name="ReportToAnalyst" Value="True" />
+                <om:Property Name="Name" Value="DispatchMessage" />
+                <om:Property Name="Signal" Value="True" />
+            </om:Element>
+            <om:Element Type="MessageDeclaration" OID="62446e79-e2b9-43fc-8d5b-5bfc0f7eaad8" ParentLink="ServiceDeclaration_MessageDeclaration" LowerBound="12.1" HigherBound="13.1">
+                <om:Property Name="Type" Value="ConvoyApplication.ConvoyMessage" />
+                <om:Property Name="ParamDirection" Value="In" />
+                <om:Property Name="ReportToAnalyst" Value="True" />
+                <om:Property Name="Name" Value="ConvoyMessage" />
+                <om:Property Name="Signal" Value="True" />
+            </om:Element>
+            <om:Element Type="ServiceBody" OID="d93abf47-9ef3-4bd0-ab52-a3cc50ff4d84" ParentLink="ServiceDeclaration_ServiceBody">
+                <om:Property Name="Signal" Value="False" />
+                <om:Element Type="Receive" OID="c88c1302-afd4-45d6-bcd7-5b5bb0d852bd" ParentLink="ServiceBody_Statement" LowerBound="15.1" HigherBound="17.1">
+                    <om:Property Name="Activate" Value="True" />
+                    <om:Property Name="PortName" Value="DispatchReceive" />
+                    <om:Property Name="MessageName" Value="DispatchMessage" />
+                    <om:Property Name="OperationName" Value="ConvoyMessageOperation" />
+                    <om:Property Name="OperationMessageName" Value="Request" />
+                    <om:Property Name="ReportToAnalyst" Value="True" />
+                    <om:Property Name="Name" Value="DispatchReceiveLoad" />
+                    <om:Property Name="Signal" Value="True" />
+                </om:Element>
+                <om:Element Type="Construct" OID="4c8c0e05-466c-4ef6-9968-775d6c112b8e" ParentLink="ServiceBody_Statement" LowerBound="17.1" HigherBound="25.1">
+                    <om:Property Name="ReportToAnalyst" Value="True" />
+                    <om:Property Name="Name" Value="CreateConvoyLoad" />
+                    <om:Property Name="Signal" Value="True" />
+                    <om:Element Type="MessageAssignment" OID="23518c64-597b-4a05-9ec5-74e666269d67" ParentLink="ComplexStatement_Statement" LowerBound="20.1" HigherBound="24.1">
+                        <om:Property Name="Expression" Value="ConvoyMessage = DispatchMessage;&#xD;&#xA;ConvoyMessage(*) = DispatchMessage(*);&#xD;&#xA;ConvoyMessage.InstanceId = 1;" />
+                        <om:Property Name="ReportToAnalyst" Value="False" />
+                        <om:Property Name="Name" Value="AssignConvoy" />
+                        <om:Property Name="Signal" Value="False" />
+                    </om:Element>
+                    <om:Element Type="MessageRef" OID="deb01ed6-7db7-4081-93a8-7b97d670ac6a" ParentLink="Construct_MessageRef" LowerBound="18.23" HigherBound="18.36">
+                        <om:Property Name="Ref" Value="ConvoyMessage" />
+                        <om:Property Name="ReportToAnalyst" Value="True" />
+                        <om:Property Name="Signal" Value="False" />
+                    </om:Element>
+                </om:Element>
+                <om:Element Type="Send" OID="9ecdf6c9-a798-4b69-96f9-b47cb0726516" ParentLink="ServiceBody_Statement" LowerBound="25.1" HigherBound="27.1">
+                    <om:Property Name="PortName" Value="DispatchLoadingDock" />
+                    <om:Property Name="MessageName" Value="ConvoyMessage" />
+                    <om:Property Name="OperationName" Value="ConvoyMessageOperation" />
+                    <om:Property Name="OperationMessageName" Value="Request" />
+                    <om:Property Name="ReportToAnalyst" Value="True" />
+                    <om:Property Name="Name" Value="DispatchLoad" />
+                    <om:Property Name="Signal" Value="True" />
+                </om:Element>
+            </om:Element>
+            <om:Element Type="PortDeclaration" OID="c3260766-a3df-44a1-83e6-5d121d7639ca" ParentLink="ServiceDeclaration_PortDeclaration" LowerBound="7.1" HigherBound="9.1">
+                <om:Property Name="PortModifier" Value="Implements" />
+                <om:Property Name="Orientation" Value="Left" />
+                <om:Property Name="PortIndex" Value="-1" />
+                <om:Property Name="IsWebPort" Value="False" />
+                <om:Property Name="OrderedDelivery" Value="False" />
+                <om:Property Name="DeliveryNotification" Value="None" />
+                <om:Property Name="Type" Value="ConvoyApplication.ConvoyMessagePort" />
+                <om:Property Name="ParamDirection" Value="In" />
+                <om:Property Name="ReportToAnalyst" Value="True" />
+                <om:Property Name="Name" Value="DispatchReceive" />
+                <om:Property Name="Signal" Value="False" />
+                <om:Element Type="LogicalBindingAttribute" OID="97cba59b-6d8a-4ee5-a93e-4ddfd2828439" ParentLink="PortDeclaration_CLRAttribute" LowerBound="7.1" HigherBound="8.1">
+                    <om:Property Name="Signal" Value="False" />
+                </om:Element>
+            </om:Element>
+            <om:Element Type="PortDeclaration" OID="bf98676b-a967-4264-8f93-eacd56a23d6d" ParentLink="ServiceDeclaration_PortDeclaration" LowerBound="9.1" HigherBound="11.1">
+                <om:Property Name="PortModifier" Value="Uses" />
+                <om:Property Name="Orientation" Value="Right" />
+                <om:Property Name="PortIndex" Value="6" />
+                <om:Property Name="IsWebPort" Value="False" />
+                <om:Property Name="OrderedDelivery" Value="False" />
+                <om:Property Name="DeliveryNotification" Value="None" />
+                <om:Property Name="Type" Value="ConvoyApplication.ConvoyMessagePort" />
+                <om:Property Name="ParamDirection" Value="In" />
+                <om:Property Name="ReportToAnalyst" Value="True" />
+                <om:Property Name="Name" Value="DispatchLoadingDock" />
+                <om:Property Name="Signal" Value="False" />
+                <om:Element Type="DirectBindingAttribute" OID="b9695c16-c861-4a33-a874-3c93ed8243db" ParentLink="PortDeclaration_CLRAttribute" LowerBound="9.1" HigherBound="10.1">
+                    <om:Property Name="PartnerPort" Value="ConvoyLoadingDock" />
+                    <om:Property Name="PartnerService" Value="ConvoyApplication.Convoy" />
+                    <om:Property Name="DirectBindingType" Value="PartnerPort" />
+                    <om:Property Name="Signal" Value="False" />
+                </om:Element>
+            </om:Element>
+        </om:Element>
+    </om:Element>
+</om:MetaModel>
+#endif // __DESIGNER_DATA
+[Microsoft.XLANGs.BaseTypes.BPELExportable(false)]
+module Chris.Blog.BiztalkConvoy
+{
+    [Microsoft.XLANGs.BaseTypes.BPELExportable(false)]
+    internal service Dispatcher
+    {
+        [Microsoft.XLANGs.BaseTypes.LogicalBinding()]
+        port implements ConvoyApplication.ConvoyMessagePort DispatchReceive;
+        [Microsoft.XLANGs.BaseTypes.DirectBinding(typeof(ConvoyApplication.Convoy), "ConvoyLoadingDock")]
+        port uses ConvoyApplication.ConvoyMessagePort DispatchLoadingDock;
+        message ConvoyApplication.ConvoyMessage DispatchMessage;
+        message ConvoyApplication.ConvoyMessage ConvoyMessage;
+        body ()
+        {
+            [Microsoft.XLANGs.BaseTypes.DesignerPosition("c88c1302-afd4-45d6-bcd7-5b5bb0d852bd")]
+            activate receive (DispatchReceive.ConvoyMessageOperation, DispatchMessage);
+            [Microsoft.XLANGs.BaseTypes.DesignerPosition("4c8c0e05-466c-4ef6-9968-775d6c112b8e")]
+            construct ConvoyMessage
+            {
+                [Microsoft.XLANGs.BaseTypes.DesignerPosition("23518c64-597b-4a05-9ec5-74e666269d67")]
+                ConvoyMessage = DispatchMessage;
+                ConvoyMessage(*) = DispatchMessage(*);
+                ConvoyMessage.InstanceId = 1;
+            }
+            [Microsoft.XLANGs.BaseTypes.DesignerPosition("9ecdf6c9-a798-4b69-96f9-b47cb0726516")]
+            send (DispatchLoadingDock.ConvoyMessageOperation, ConvoyMessage);
+        }
+    }
+}
+
